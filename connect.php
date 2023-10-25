@@ -2,8 +2,6 @@
 
 $con = new mysqli('localhost', 'root', 'iloveyousabado', 'crudtraining');
 
-if ($con) {
-    echo 'Successful Connnection sheesh';
-} else {
+if (!$con) {
     die(mysqli_error($con));
 }

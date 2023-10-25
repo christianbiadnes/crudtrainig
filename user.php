@@ -1,3 +1,24 @@
+<?php
+include 'connect.php';
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $password = $_POST['name'];
+
+    $sql = "insert into `crud` (name, email, mobile, password) value('$name','$email','mobile','password')";
+
+    $result = mysqli_query($con, $sql);
+
+    if ($result) {
+        echo "Succesful registration";
+    } else {
+        die(mysqli_error($con));
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -32,7 +53,7 @@
                 <input type="checkbox" name="show Password" class="mt-3" onclick=showPassword()> Show Password
             </div>
 
-            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary mt-4">Submit</button>
 
         </form>
     </div>
