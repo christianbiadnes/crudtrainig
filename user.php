@@ -5,14 +5,14 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
-    $password = $_POST['name'];
+    $password = $_POST['password'];
 
-    $sql = "insert into `crud` (name, email, mobile, password) value('$name','$email','mobile','password')";
+    $sql = "insert into `crud` (name, email, mobile, password) value('$name','$email','$mobile','$password')";
 
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-        echo "Succesful registration";
+        header('location:display.php');
     } else {
         die(mysqli_error($con));
     }
@@ -60,8 +60,8 @@ if (isset($_POST['submit'])) {
 
     <script>
         showPassword = () => {
-            let pw = document.querySelector("#showPw");
-            pw.type = pw.type === ('password') ? 'text' : 'password';
+            pw = document.querySelector('#showPw');
+            pw.type = pw.type === 'password' ? 'text' : 'password';
         }
     </script>
 </body>

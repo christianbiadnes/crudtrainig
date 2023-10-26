@@ -27,34 +27,32 @@ include "connect.php";
         </thead>
         <tbody>
             <?php
-
             $sql = "select * from `crud`";
             $result = mysqli_query($con, $sql);
 
             if ($result) {
-                $row = mysqli_fetch_assoc($result);
-                echo $row['name'];
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $email = $row['email'];
+                    $mobile = $row['mobile'];
+                    $password = $row['password'];
+
+                    echo "<tr>
+                        <th scope='row'>$id</th>
+                        <td>$name</td>
+                        <td>$email</td>
+                        <td>$mobile</td>
+                        <td>$password</td>
+                        <td> 
+                        <button class='btn btn-primary text-decoration-none'><a href='' class='text-light text-decoration-none'>Update</a></button>
+                        <button class='btn btn-danger text-decoration-none'><a href='' class='text-light text-decoration-none'>Delete</a></button>
+                        </td>
+                    </tr>   
+                    ";
+                };
             }
-
-
             ?>
-            <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr> -->
         </tbody>
     </table>
 
