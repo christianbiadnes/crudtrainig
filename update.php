@@ -1,5 +1,14 @@
 <?php
 include 'connect.php';
+$id = $_GET['updateid'];
+$sql = "select * from `crud` where id=$id";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($result);
+$name = $row['name'];
+$email = $row['email'];
+$mobile = $row['mobile'];
+$password = $row['password'];
+
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -7,7 +16,7 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
 
-    $sql = "Insert into `crud` (name, email, mobile, password) value('$name','$email','$mobile','$password')";
+    $sql = "Update `crud` set id=$id,name='$name',email='$email',mobile='$mobile',password='$password' where id=$id";
     $result = mysqli_query($con, $sql);
 
     if ($result) {
@@ -34,26 +43,26 @@ if (isset($_POST['submit'])) {
         <form method="post">
             <div class="mb-3">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Enter your Name" name="name" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Enter your Name" name="name" value=<?php echo $name; ?> autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Enter your Email" name="email" autocomplete="off">
+                <input type="email" class="form-control" placeholder="Enter your Email" name="email" value=<?php echo $email; ?> autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <label>Mobile</label>
-                <input type="text" class="form-control" placeholder="Enter your Mobile Number" name="mobile" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Enter your Mobile Number" value=<?php echo $mobile; ?> name="mobile" autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <label>Password</label>
-                <input type="password" class="form-control" id="showPw" placeholder="Enter your Password" name="password">
+                <input type="password" class="form-control" id="showPw" placeholder="Enter your Password" name="password" value=<?php echo $password; ?>>
                 <input type="checkbox" name="show Password" class="mt-3" onclick=showPassword()> Show Password
             </div>
 
-            <button type="submit" name="submit" class="btn btn-primary mt-4">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary mt-4">Update</button>
 
         </form>
     </div>
